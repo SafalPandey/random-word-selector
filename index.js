@@ -141,7 +141,7 @@ const words = [
     }
 ];
 
-selectedWords = [];
+let selectedWords = [];
 
 wordElement = document.getElementById('word');
 meaningElement = document.getElementById('meaning');
@@ -159,8 +159,6 @@ function updateWord() {
         words.filter((x) => !selectedWords.includes(x))
     );
 
-    console.log(selectedWord, selectedWords.length, selectedWords, words.filter((x) => !selectedWords.includes(x)));
-
     if (selectedWords.length == words.length) {
         wordElement.innerHTML = 'ALL OUT OF WORDS MAAAN!!!!';
         meaningElement.innerHTML = '';
@@ -168,19 +166,14 @@ function updateWord() {
         return;
     }
 
-    wordElement.innerHTML = 'Word: ' + selectedWord.word;
-    meaningElement.innerHTML = 'Meaning: ' + selectedWord.meaning;
+    wordElement.innerHTML = 'WORD: ' + selectedWord.word;
+    meaningElement.innerHTML = 'MEANING: ' + selectedWord.meaning;
     selectedWords.push(selectedWord);
-
 
     const selectedList = selectedWords.reduce((acc, x) => {
         acc += '<li>' + x.word + '</li>';
         return acc
     }, '');
 
-    console.log(selectedList);
-
     selectedListElement.innerHTML = selectedList;
-
-
 }
