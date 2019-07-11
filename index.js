@@ -143,10 +143,10 @@ const words = [
 
 let selectedWords = [];
 
-wordElement = document.getElementById('word');
-meaningElement = document.getElementById('meaning');
-buttonElement = document.getElementById('button');
-selectedListElement = document.getElementById('selected-words-list');
+const wordElement = document.getElementById('word');
+const meaningElement = document.getElementById('meaning');
+const buttonElement = document.getElementById('button');
+const selectedListElement = document.getElementById('selected-words-list');
 
 function getRandomWord(wordArray) {
     const randIndex = Math.floor(Math.random() * wordArray.length);
