@@ -9,16 +9,30 @@
 </head>
 
 <body style="width: 100%">
-    <div style="width: 100%;" align="center">
-        <h1 id="meaning"></h1>
-        <p id="word"></p>
-        <button id="button" onClick="updateWord()">New Word!!!</button>
+    <h1>Random Word Selector</h1>
+    <div id="words-div" style="width: 100%;">
+        <div id="current-words-div" style="width: 100%;" align="center">
+            <h2 id="meaning"></h2>
+            <p id="word"></p>
+            <button id="button"">New Word!!!</button>
+        </div>
+        <div id=" selected-words-div">
+                <ol id="selected-words-list">
+                </ol>
+        </div>
     </div>
-    <div>
-        <ol id="selected-words-list">
-        </ol>
+    <div id="words-input-div" style="position:fixed; width: 100%;" align="center">
+        <textarea id="input" style="height: 50vh; width: 80%;"></textarea>
+        <br />
+        <button id="submit">Submit</button>
     </div>
 </body>
-<script src="./index.js"></script>
+
+<script src="./js/data.js"></script>
+<script src="./js/utils.js"></script>
+<script src="./js/WordSelector.js"></script>
+<script src="./js/WordsInput.js"></script>
+<script src="./js/App.js"></script>
+<script src="./js/index.js"></script>
 
 </html>
