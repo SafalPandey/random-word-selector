@@ -144,5 +144,4 @@ const DEFAULT_WORDS = `[
 const PLACEHOLDER_TEXT = `Enter words array here...
 Eg:-
 ${JSON.stringify(JSON.parse(DEFAULT_WORDS).slice(0, 2), null, 2)}
-`
-
+`;
