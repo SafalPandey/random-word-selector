@@ -33,5 +33,4 @@ class App {
 
     this.selector.handleClick();
   }
-
 }

@@ -68,5 +68,4 @@ class WordSelector {
     this.updateCurrentWord(selectedWord);
     this.updateSelectedList();
   }
-
 }
