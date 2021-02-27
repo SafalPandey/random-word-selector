@@ -1,0 +1,28 @@
+{
+  "name": "random-word-selector",
+  "description": "Get a random word and it's meaning from a JSON input.",
+  "version": "1.0.0",
+  "repository": "git@github.com:SafalPandey/random-word-selector.git",
+  "author": "Safal Pandey <safal.pandey.sp@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-react": "^7.12.13",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
