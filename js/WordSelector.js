@@ -2,6 +2,9 @@ class WordSelector {
   constructor() {
     this.words = [];
     this.selectedWords = [];
+    this.settings = {
+      shouldDisplayMeaning: true
+    }
 
     this.wrapper = document.getElementById('words-div');
     this.wordElement = document.getElementById('word');
@@ -35,15 +38,22 @@ class WordSelector {
 
   generateSelectedList(list) {
     return list.reduce((acc, x) => {
-      acc += '<li>' + x.word + '</li>';
+      acc += `<li>${x.word}${this.settings.shouldDisplayMeaning ? `-> ${x.meaning}` : ''}</li>`;
 
       return acc;
     }, '');
   }
 
+  updateSetting(settings) {
+    this.settings = {
+      ...this.settings,
+      ...settings
+    }
+  }
+
   updateCurrentWord(selectedWord) {
     if (this.selectedWords.length == this.words.length) {
-      this.wordElement.innerHTML = 'ALL OUT OF WORDS MAAAN!!!!';
+      this.wordElement.innerHTML = 'ALL OUT OF WORDS!!!';
       this.meaningElement.innerHTML = '';
 
       return;
@@ -51,6 +61,7 @@ class WordSelector {
 
     this.wordElement.innerHTML = 'WORD: ' + selectedWord.word;
     this.meaningElement.innerHTML = 'MEANING: ' + selectedWord.meaning;
+    this.meaningElement.style.display = this.settings.shouldDisplayMeaning ? 'block' : 'none';
   }
 
   updateSelectedList() {

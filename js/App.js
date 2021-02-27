@@ -4,7 +4,7 @@ class App {
     this.selector = new WordSelector();
 
     this.input.submitElement.addEventListener("click", (evt) => {
-      this.handleInput(this.input.inputElement.value);
+      this.handleInput(this.input.inputElement.value, this.input.displayMeaningSetting.checked);
     });
 
     this.selector.buttonElement.addEventListener("click", (evt) => {
@@ -12,12 +12,15 @@ class App {
     });
   }
 
-  handleInput(inputWords) {
+  handleInput(inputWords, shouldDisplayMeaning) {
     inputWords = inputWords || DEFAULT_WORDS;
 
     this.words = JSON.parse(inputWords);
-    this.selector.setWordArray(this.words);
     this.selector.reset();
+    this.selector.setWordArray(this.words);
+    this.selector.updateSetting({
+      shouldDisplayMeaning: shouldDisplayMeaning
+    })
 
     this.input.hide();
     this.selector.show();
