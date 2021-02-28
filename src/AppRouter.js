@@ -4,18 +4,19 @@ import { Route, Switch, HashRouter } from 'react-router-dom';
 import { WordsProvider } from './contexts/words';
 import { SettingsProvider } from './contexts/settings';
 
-const WordsInput = lazy(() => import('./components/WordsInput'));
+import Header from './components/Header';
+const Home = lazy(() => import('./components/Home'));
 const WordSelector = lazy(() => import('./components/WordSelector'));
 
 function App() {
   return (
     <HashRouter>
-      <h1>Random Word Selector</h1>
+      <Header />
       <WordsProvider>
         <SettingsProvider>
           <Suspense fallback={<p>Loading...</p>}>
             <Switch>
-              <Route exact path="/" component={WordsInput} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/selector" component={WordSelector} />
             </Switch>
           </Suspense>
