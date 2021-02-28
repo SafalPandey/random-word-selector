@@ -11,12 +11,16 @@
  */
 
 import React, { useState, useContext, createContext } from 'react';
+
+import { DataSources } from '../constants';
 import { getObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStorage';
 
 const LOCAL_STORAGE_SETTING_KEY = 'storedSetting';
 const DEFAULT_SETTINGS = {
   isCustomWords: false,
-  shouldShowMeaning: true
+  shouldShowMeaning: true,
+  apiSourceKey: null,
+  dataSource: DataSources.STATIC
 };
 
 const storedSetting = getObjFromLocalStorage(LOCAL_STORAGE_SETTING_KEY, DEFAULT_SETTINGS);

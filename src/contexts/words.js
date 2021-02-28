@@ -29,7 +29,7 @@ function WordsProvider(props) {
   const updateWords = (words) => {
     setWords(words);
     setObjInLocalStorage(LOCAL_STORAGE_WORDS_KEY, words);
-  }
+  };
 
   return <WordsStateContext.Provider value={[words, updateWords]}>{props.children}</WordsStateContext.Provider>;
 }
