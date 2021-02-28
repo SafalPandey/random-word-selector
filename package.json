@@ -6,8 +6,8 @@
   "author": "Safal Pandey <safal.pandey.sp@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve",
-    "build": "webpack"
+    "start": "webpack serve --config=webpack.config.dev.js",
+    "build": "rm -rf dist/ && webpack --config=webpack.config.prod.js"
   },
   "dependencies": {
     "react": "^17.0.1",
