@@ -34,7 +34,9 @@ function WordSelector() {
     <>
       <div id="words-div" style={{ width: '100%' }}>
         <div id="current-words-div" style={{ width: '100%' }} align="center">
-          <button onClick={handleNewWordClick} disabled={isListExhausted}>New Word</button>
+          <button onClick={handleNewWordClick} disabled={isListExhausted}>
+            New Word
+          </button>
           {isListExhausted ? (
             <h2>ALL OUT OF WORDS!!!</h2>
           ) : (
