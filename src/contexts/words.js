@@ -13,15 +13,25 @@
 import React, { useState, useContext, createContext } from 'react';
 
 import { DEFAULT_WORDS } from '../data';
+import { getObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStorage';
 
-const WordsStateContext = createContext([DEFAULT_WORDS, () => null]);
+const LOCAL_STORAGE_WORDS_KEY = 'storedWords';
+
+const storedWords = getObjFromLocalStorage(LOCAL_STORAGE_WORDS_KEY, DEFAULT_WORDS);
+
+const WordsStateContext = createContext([storedWords, () => null]);
 
 function WordsProvider(props) {
   const [defaultWords] = useContext(WordsStateContext);
 
   const [words, setWords] = useState(defaultWords);
 
-  return <WordsStateContext.Provider value={[words, setWords]}>{props.children}</WordsStateContext.Provider>;
+  const updateWords = (words) => {
+    setWords(words);
+    setObjInLocalStorage(LOCAL_STORAGE_WORDS_KEY, words);
+  }
+
+  return <WordsStateContext.Provider value={[words, updateWords]}>{props.children}</WordsStateContext.Provider>;
 }
 
 function useWordsState() {
