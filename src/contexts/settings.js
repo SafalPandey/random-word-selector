@@ -15,6 +15,7 @@ import { getObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStor
 
 const LOCAL_STORAGE_SETTING_KEY = 'storedSetting';
 const DEFAULT_SETTINGS = {
+  isCustomWords: false,
   shouldShowMeaning: true
 };
 
