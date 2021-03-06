@@ -13,9 +13,9 @@ function Home() {
   const [words, setWords] = useWordsState();
   const [settings, setSettings] = useSettingsState();
 
-  const [apiKey, setApiKey] = useState(settings.apiKey);
   const [customWords, setCustomWords] = useState(null);
-  const [dataSource, setDataSource] = useState(DataSources.STATIC);
+  const [apiKey, setApiKey] = useState(settings.apiKey);
+  const [dataSource, setDataSource] = useState(settings.dataSource);
 
   const updateCustomStaticData = () => {
     let parsedCustomWords;

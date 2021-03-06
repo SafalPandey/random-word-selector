@@ -28,7 +28,7 @@ function DataSource(props) {
             name="data-source"
             type="radio"
             onClick={() => setDataSource(DataSources.STATIC)}
-            defaultChecked
+            defaultChecked={dataSource === DataSources.STATIC}
           />
           <label htmlFor="input-source-static">
             <strong>Static list</strong>
@@ -37,7 +37,13 @@ function DataSource(props) {
           <br />
           <br />
 
-          <input id="input-source-api" name="data-source" type="radio" onClick={() => setDataSource(DataSources.API)} />
+          <input
+            id="input-source-api"
+            name="data-source"
+            type="radio"
+            onClick={() => setDataSource(DataSources.API)}
+            defaultChecked={dataSource === DataSources.API}
+          />
           <label htmlFor="input-source-api">
             <strong>RapidAPI</strong>
           </label>
