@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { PLACEHOLDER_TEXT } from '../data';
 import { DataSources } from '../constants';
 
 function DataSource(props) {
   const { words, setApiKey, settings, setCustomWords, customWords, dataSource, setDataSource } = props;
+
+  const value = useMemo(() => {
+    if (customWords !== null) {
+      return customWords;
+    }
+
+    if (settings.isCustomWords) {
+      return JSON.stringify(words, null, 2);
+    }
+
+    return undefined;
+  }, [customWords]);
 
   return (
     <>
@@ -38,12 +50,12 @@ function DataSource(props) {
               onChange={(evt) => setCustomWords(evt.target.value)}
               placeholder={PLACEHOLDER_TEXT}
               style={{ height: '50vh', width: '80%' }}
-              value={customWords || (settings.isCustomWords ? JSON.stringify(words, null, 2) : undefined)}
+              value={value}
             />
           ) : (
             <input
               id="input-api-key"
-              onChange={() => setApiKey(evt.target.value)}
+              onChange={(evt) => setApiKey(evt.target.value)}
               placeholder={'Add RapidAPI access key here.'}
               style={{ height: '15vh', width: '80%' }}
               value={settings.apiKey}
