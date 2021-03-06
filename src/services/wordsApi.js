@@ -20,6 +20,6 @@ export async function fetchRandomWord(apiKey) {
 
   return {
     word: response.word,
-    meaning: response.results[0]?.definition
+    meaning: response.results && response.results[0]?.definition
   }
 }
