@@ -18,26 +18,29 @@ function Home() {
   const [dataSource, setDataSource] = useState(settings.dataSource);
 
   const updateCustomStaticData = () => {
-    let parsedCustomWords;
+    if (customWords !== null) {
+      let parsedCustomWords;
 
-    try {
-      parsedCustomWords = JSON.parse(customWords || JSON.stringify(DEFAULT_WORDS));
-    } catch (e) {
-      const message = 'Passed data must be a valid JSON Array. Could not parse passed list.';
-      console.error(message, e);
+      try {
+        parsedCustomWords = JSON.parse(customWords || JSON.stringify(DEFAULT_WORDS));
+      } catch (e) {
+        const message = 'Passed data must be a valid JSON Array. Could not parse passed list.';
+        console.error(message, e);
 
-      throw new Error(message);
+        throw new Error(message);
+      }
+
+      if (!Array.isArray(parsedCustomWords)) {
+        throw new Error('Custom words needs to be an array.');
+      }
+
+      if (parsedCustomWords.some(({ word }) => !word)) {
+        throw new Error('Every element in passed data must have a `word` property.');
+      }
+
+      setWords(parsedCustomWords);
     }
 
-    if (!Array.isArray(parsedCustomWords)) {
-      throw new Error('Custom words needs to be an array.');
-    }
-
-    if (parsedCustomWords.some(({ word }) => !word)) {
-      throw new Error('Every element in passed data must have a `word` property.');
-    }
-
-    setWords(parsedCustomWords);
     setSettings({ dataSource, isCustomWords: !!customWords });
   };
 
@@ -54,7 +57,7 @@ function Home() {
 
   const onSubmit = () => {
     try {
-      if (dataSource === DataSources.STATIC && customWords !== null) {
+      if (dataSource === DataSources.STATIC) {
         updateCustomStaticData();
       }
 
