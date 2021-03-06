@@ -6,11 +6,12 @@ import { useSettingsState } from '../contexts/settings';
 
 function WordSelector() {
   const [words] = useWordsState();
-  const [{ shouldShowMeaning }] = useSettingsState();
+  const [settings] = useSettingsState();
   const [selectedWords, setSelectedWords] = useState([]);
-  const isListExhausted = selectedWords?.length === words?.length;
 
-  const [selectedList, lastSelectedWord] = useMemo(() => {
+  const { dataSource, shouldShowMeaning } = settings;
+
+  const [selectedList, lastSelectedWord, isListExhausted] = useMemo(() => {
     return [
       selectedWords.map((x, idx) => (
         <li key={idx}>
@@ -18,7 +19,8 @@ function WordSelector() {
           {shouldShowMeaning ? ` -> ${x?.meaning}` : ''}
         </li>
       )),
-      selectedWords[selectedWords.length - 1]
+      selectedWords[selectedWords.length - 1],
+      selectedWords.length === words.length
     ];
   }, [selectedWords]);
 
