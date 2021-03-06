@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react';
 
+import { DataSources } from '../constants';
 import { useWordsState } from '../contexts/words';
 import { getRandomElement } from '../utils/common';
+import { fetchRandomWord } from '../services/wordsApi';
 import { useSettingsState } from '../contexts/settings';
 
 function WordSelector() {
@@ -9,7 +11,7 @@ function WordSelector() {
   const [settings] = useSettingsState();
   const [selectedWords, setSelectedWords] = useState([]);
 
-  const { dataSource, shouldShowMeaning } = settings;
+  const { dataSource, apiKey, shouldShowMeaning } = settings;
 
   const [selectedList, lastSelectedWord, isListExhausted] = useMemo(() => {
     return [
@@ -24,8 +26,11 @@ function WordSelector() {
     ];
   }, [selectedWords]);
 
-  function handleNewWordClick() {
-    const selectedWord = getRandomElement(words.filter((x) => !selectedWords.includes(x)));
+  async function handleNewWordClick() {
+    const selectedWord =
+      dataSource === DataSources.API
+        ? await fetchRandomWord(apiKey)
+        : getRandomElement(words.filter((x) => !selectedWords.includes(x)));
 
     if (!selectedWord) return;
 
