@@ -37,7 +37,7 @@ function Home() {
     }
 
     setWords(parsedCustomWords);
-    setSettings({ isCustomWords: true });
+    setSettings({ dataSource, isCustomWords: true });
   };
 
   const updateApiSettings = () => {
@@ -48,7 +48,7 @@ function Home() {
       throw new Error(message);
     }
 
-    setSettings({ apiKey });
+    setSettings({ dataSource, apiKey });
   };
 
   const onSubmit = () => {
@@ -61,7 +61,6 @@ function Home() {
         updateApiSettings();
       }
 
-      setSettings({ dataSource });
       history.push('/selector');
     } catch (e) {
       alert(e.message);
