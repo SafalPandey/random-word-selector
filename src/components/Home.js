@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 
 import Settings from './Settings';
 import DataSource from './DataSource';
+import { DEFAULT_WORDS } from '../data';
 import { DataSources } from '../constants';
 import { useWordsState } from '../contexts/words';
 import { useSettingsState } from '../contexts/settings';
@@ -20,7 +21,7 @@ function Home() {
     let parsedCustomWords;
 
     try {
-      parsedCustomWords = JSON.parse(customWords);
+      parsedCustomWords = JSON.parse(customWords || JSON.stringify(DEFAULT_WORDS));
     } catch (e) {
       const message = 'Passed data must be a valid JSON Array. Could not parse passed list.';
       console.error(message, e);
@@ -37,7 +38,7 @@ function Home() {
     }
 
     setWords(parsedCustomWords);
-    setSettings({ dataSource, isCustomWords: true });
+    setSettings({ dataSource, isCustomWords: !!customWords });
   };
 
   const updateApiSettings = () => {
