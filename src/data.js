@@ -1,4 +1,4 @@
-const DEFAULT_WORDS = `[
+export const DEFAULT_WORDS = [
     {
         "word": "FLABBERGASTED",
         "meaning": "As if struck dumb with astonishment and surprise"
@@ -139,9 +139,9 @@ const DEFAULT_WORDS = `[
         "word": "IMPUDENT",
         "meaning": "Improperly forward or bold"
     }
-]`;
+];
 
-const PLACEHOLDER_TEXT = `Enter words array here...
+export const PLACEHOLDER_TEXT = `Enter words array here...
 Eg:-
-${JSON.stringify(JSON.parse(DEFAULT_WORDS).slice(0, 2), null, 2)}
+${JSON.stringify(DEFAULT_WORDS.slice(0, 2), null, 2)}
 `;
