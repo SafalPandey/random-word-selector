@@ -22,7 +22,7 @@ function WordSelector() {
         </li>
       )),
       selectedWords[selectedWords.length - 1],
-      selectedWords.length === words.length
+      dataSource !== DataSources.API && selectedWords.length === words.length
     ];
   }, [selectedWords]);
 
