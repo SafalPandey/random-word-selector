@@ -21,5 +21,5 @@ export async function fetchRandomWord(apiKey) {
   return {
     word: response.word,
     meaning: response.results && response.results[0]?.definition
-  }
+  };
 }
