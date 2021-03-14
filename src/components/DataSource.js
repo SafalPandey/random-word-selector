@@ -61,6 +61,7 @@ function DataSource(props) {
           ) : (
             <input
               id="input-api-key"
+              type="password"
               onChange={(evt) => setApiKey(evt.target.value)}
               placeholder={'Add RapidAPI access key here.'}
               style={{ height: '15vh', width: '80%' }}
