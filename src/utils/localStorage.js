@@ -25,3 +25,13 @@ export function setObjInLocalStorage(key, value) {
 
   return localStorage.setItem(key, JSON.stringify(value));
 }
+
+export function removeObjFromLocalStorage(key) {
+  if (!localStorage) {
+    console.warn('No localStorage found!');
+
+    return;
+  }
+
+  return localStorage.removeItem(key);
+}
