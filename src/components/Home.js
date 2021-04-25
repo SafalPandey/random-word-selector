@@ -36,13 +36,13 @@ function Home() {
       return;
     }
 
-    setSettings({ dataSource, isCustomWords: !!customWords });
+    const parsedCustomWords = parseCustomWords(customWords, shouldShowMeaning);
+    setWords(parsedCustomWords);
   };
 
   const updateApiSettings = () => {
     if (!apiKey) {
       const message = 'API key is required for RapidAPI data source.';
-      console.error(message);
 
       throw new Error(message);
     }
