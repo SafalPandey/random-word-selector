@@ -11,7 +11,7 @@ function Settings({ settings, setSettings }) {
           onChange={(e) => setSettings({ shouldShowMeaning: e.target.checked })}
           checked={settings.shouldShowMeaning}
         />
-        <label htmlFor="display-meaning-setting">Display Meaning of current word</label>
+        <label htmlFor="display-meaning-setting">Display the meaning of current word</label>
       </div>
       <br />
     </>
