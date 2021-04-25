@@ -7,7 +7,7 @@ export function getObjFromLocalStorage(key, defaultValue) {
 
   const storedValue = localStorage.getItem(key);
 
-  if (!storedValue) {
+  if (!storedValue && defaultValue) {
     setObjInLocalStorage(key, defaultValue);
 
     return defaultValue;
