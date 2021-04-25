@@ -12,22 +12,12 @@ function Home() {
   const [words, setWords, resetWords] = useWordsState();
   const [settings, setSettings] = useSettingsState();
 
-  const [customWords, setCustomWords] = useState(null);
-  const [apiKey, setApiKey] = useState(settings.apiKey);
-  const [dataSource, setDataSource] = useState(settings.dataSource);
+  const { apiKey: apiKeySetting, dataSource: dataSourceSetting, shouldShowMeaning } = settings;
 
-  const updateCustomStaticData = () => {
-    if (customWords !== null) {
-      let parsedCustomWords;
-
-      try {
-        parsedCustomWords = JSON.parse(customWords || JSON.stringify(DEFAULT_WORDS));
-      } catch (e) {
-        const message = 'Passed data must be a valid JSON Array. Could not parse passed list.';
-        console.error(message, e);
-
-        throw new Error(message);
-      }
+  const defaultCustomWords = (words && JSON.stringify(words, null, 2)) || '';
+  const [customWords, setCustomWords] = useState(defaultCustomWords);
+  const [apiKey, setApiKey] = useState(apiKeySetting);
+  const [dataSource, setDataSource] = useState(dataSourceSetting);
 
   const updateCustomStaticData = () => {
     if (!customWords) {
@@ -54,6 +44,7 @@ function Home() {
     try {
       if (dataSource === DataSources.STATIC) {
         updateCustomStaticData();
+        setSettings({ dataSource });
       }
 
       if (dataSource === DataSources.API) {
@@ -62,6 +53,7 @@ function Home() {
 
       history.push('/selector');
     } catch (e) {
+      console.error(e);
       alert(e.message);
     }
   };
