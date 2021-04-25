@@ -18,7 +18,7 @@ const LOCAL_STORAGE_WORDS_KEY = 'storedWords';
 
 const storedWords = getObjFromLocalStorage(LOCAL_STORAGE_WORDS_KEY);
 
-const WordsStateContext = createContext([storedWords, () => null]);
+const WordsStateContext = createContext([storedWords, () => null, () => null]);
 
 function WordsProvider(props) {
   const [defaultWords] = useContext(WordsStateContext);
@@ -26,11 +26,22 @@ function WordsProvider(props) {
   const [words, setWords] = useState(defaultWords);
 
   const updateWords = (words) => {
+    if (!words) {
+      return;
+    }
+
     setWords(words);
     setObjInLocalStorage(LOCAL_STORAGE_WORDS_KEY, words);
   };
 
-  return <WordsStateContext.Provider value={[words, updateWords]}>{props.children}</WordsStateContext.Provider>;
+  const resetWords = () => {
+    setWords(defaultWords);
+    removeObjFromLocalStorage(LOCAL_STORAGE_WORDS_KEY);
+  };
+
+  return (
+    <WordsStateContext.Provider value={[words, updateWords, resetWords]}>{props.children}</WordsStateContext.Provider>
+  );
 }
 
 function useWordsState() {
