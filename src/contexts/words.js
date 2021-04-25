@@ -12,12 +12,11 @@
 
 import React, { useState, useContext, createContext } from 'react';
 
-import { DEFAULT_WORDS } from '../data';
-import { getObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStorage';
+import { getObjFromLocalStorage, removeObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStorage';
 
 const LOCAL_STORAGE_WORDS_KEY = 'storedWords';
 
-const storedWords = getObjFromLocalStorage(LOCAL_STORAGE_WORDS_KEY, DEFAULT_WORDS);
+const storedWords = getObjFromLocalStorage(LOCAL_STORAGE_WORDS_KEY);
 
 const WordsStateContext = createContext([storedWords, () => null]);
 
