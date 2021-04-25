@@ -4,19 +4,7 @@ import { PLACEHOLDER_TEXT } from '../data';
 import { DataSources } from '../constants';
 
 function DataSource(props) {
-  const { words, apiKey, setApiKey, settings, setCustomWords, customWords, dataSource, setDataSource } = props;
-
-  const value = useMemo(() => {
-    if (customWords !== null) {
-      return customWords;
-    }
-
-    if (settings.isCustomWords) {
-      return JSON.stringify(words, null, 2);
-    }
-
-    return undefined;
-  }, [customWords]);
+  const { apiKey, setApiKey, setCustomWords, customWords, dataSource, setDataSource } = props;
 
   return (
     <>
@@ -56,7 +44,7 @@ function DataSource(props) {
               onChange={(evt) => setCustomWords(evt.target.value)}
               placeholder={PLACEHOLDER_TEXT}
               style={{ height: '50vh', width: '80%' }}
-              value={value}
+              value={customWords}
             />
           ) : (
             <input
