@@ -7,7 +7,7 @@ export function getObjFromLocalStorage(key, defaultValue) {
 
   const storedValue = localStorage.getItem(key);
 
-  if (!storedValue) {
+  if (!storedValue && defaultValue) {
     setObjInLocalStorage(key, defaultValue);
 
     return defaultValue;
@@ -24,4 +24,14 @@ export function setObjInLocalStorage(key, value) {
   }
 
   return localStorage.setItem(key, JSON.stringify(value));
+}
+
+export function removeObjFromLocalStorage(key) {
+  if (!localStorage) {
+    console.warn('No localStorage found!');
+
+    return;
+  }
+
+  return localStorage.removeItem(key);
 }
