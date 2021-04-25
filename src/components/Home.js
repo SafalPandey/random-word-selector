@@ -3,14 +3,13 @@ import { useHistory } from 'react-router';
 
 import Settings from './Settings';
 import DataSource from './DataSource';
-import { DEFAULT_WORDS } from '../data';
 import { DataSources } from '../constants';
 import { useWordsState } from '../contexts/words';
 import { useSettingsState } from '../contexts/settings';
 
 function Home() {
   const history = useHistory();
-  const [words, setWords] = useWordsState();
+  const [words, setWords, resetWords] = useWordsState();
   const [settings, setSettings] = useSettingsState();
 
   const [customWords, setCustomWords] = useState(null);
@@ -30,15 +29,11 @@ function Home() {
         throw new Error(message);
       }
 
-      if (!Array.isArray(parsedCustomWords)) {
-        throw new Error('Custom words needs to be an array.');
-      }
+  const updateCustomStaticData = () => {
+    if (!customWords) {
+      resetWords();
 
-      if (parsedCustomWords.some(({ word }) => !word)) {
-        throw new Error('Every element in passed data must have a `word` property.');
-      }
-
-      setWords(parsedCustomWords);
+      return;
     }
 
     setSettings({ dataSource, isCustomWords: !!customWords });
