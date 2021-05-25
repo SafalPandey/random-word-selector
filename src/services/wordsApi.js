@@ -1,10 +1,9 @@
-const RANDOM_WORD_API_URL = `https://san-random-words.vercel.app/`;
+import { RANDOM_WORD_API_URL } from '../constants';
 
 /**
- * Fetches random word from RapidAPI.
+ * Fetches random word from an API source.
  *
- * @param {string} apiKey
- * @returns {Promise<>}
+ * @returns {Promise<{ word: string; meaning: string; }>}
  */
 export async function fetchRandomWord() {
   const result = await fetch(RANDOM_WORD_API_URL);
