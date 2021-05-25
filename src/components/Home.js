@@ -12,11 +12,10 @@ function Home() {
   const [words, setWords, resetWords] = useWordsState();
   const [settings, setSettings] = useSettingsState();
 
-  const { apiKey: apiKeySetting, dataSource: dataSourceSetting, shouldShowMeaning } = settings;
+  const { dataSource: dataSourceSetting, shouldShowMeaning } = settings;
 
   const defaultCustomWords = (words && JSON.stringify(words, null, 2)) || '';
   const [customWords, setCustomWords] = useState(defaultCustomWords);
-  const [apiKey, setApiKey] = useState(apiKeySetting);
   const [dataSource, setDataSource] = useState(dataSourceSetting);
 
   const updateCustomStaticData = () => {
@@ -30,27 +29,13 @@ function Home() {
     setWords(parsedCustomWords);
   };
 
-  const updateApiSettings = () => {
-    if (!apiKey) {
-      const message = 'API key is required for RapidAPI data source.';
-
-      throw new Error(message);
-    }
-
-    setSettings({ dataSource, apiKey });
-  };
-
   const onSubmit = () => {
     try {
       if (dataSource === DataSources.STATIC) {
         updateCustomStaticData();
-        setSettings({ dataSource });
       }
 
-      if (dataSource === DataSources.API) {
-        updateApiSettings();
-      }
-
+      setSettings({ dataSource });
       history.push('/selector');
     } catch (e) {
       console.error(e);
@@ -60,7 +45,7 @@ function Home() {
 
   return (
     <>
-      <DataSource {...{ words, apiKey, setApiKey, settings, dataSource, customWords, setDataSource, setCustomWords }} />
+      <DataSource {...{ words, settings, dataSource, customWords, setDataSource, setCustomWords }} />
       <Settings settings={settings} setSettings={setSettings} />
       <button style={{ height: '2em', fontSize: '1.25em' }} onClick={onSubmit}>
         Submit

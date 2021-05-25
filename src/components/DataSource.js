@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 
 import { PLACEHOLDER_TEXT } from '../data';
-import { DataSources } from '../constants';
+import { DataSources, RANDOM_WORD_API_URL } from '../constants';
 
 function DataSource(props) {
-  const { apiKey, setApiKey, setCustomWords, customWords, dataSource, setDataSource } = props;
+  const { setCustomWords, customWords, dataSource, setDataSource } = props;
 
   return (
     <>
@@ -33,7 +33,7 @@ function DataSource(props) {
             defaultChecked={dataSource === DataSources.API}
           />
           <label htmlFor="input-source-api">
-            <strong>RapidAPI</strong>
+            <strong>API source</strong>
           </label>
         </div>
 
@@ -47,14 +47,7 @@ function DataSource(props) {
               value={customWords}
             />
           ) : (
-            <input
-              id="input-api-key"
-              type="password"
-              onChange={(evt) => setApiKey(evt.target.value)}
-              placeholder={'Add RapidAPI access key here.'}
-              style={{ height: '15vh', width: '80%' }}
-              value={apiKey}
-            />
+            <em style={{ height: '15vh', width: '80%' }}>Data will be fetched from "{RANDOM_WORD_API_URL}".</em>
           )}
         </div>
       </div>

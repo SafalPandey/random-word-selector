@@ -18,7 +18,6 @@ import { getObjFromLocalStorage, setObjInLocalStorage } from '../utils/localStor
 const LOCAL_STORAGE_SETTING_KEY = 'storedSetting';
 const DEFAULT_SETTINGS = {
   shouldShowMeaning: true,
-  apiSourceKey: null,
   dataSource: DataSources.STATIC
 };
 
