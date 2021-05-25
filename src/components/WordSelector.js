@@ -35,7 +35,11 @@ function WordSelector() {
         ? await fetchRandomWord(apiKey)
         : getRandomElement(words.filter((x) => !selectedWords.includes(x)));
 
-    if (!selectedWord) return;
+    if (!selectedWord) {
+      console.warn(`Couldn't select a word for some reason ¯\\_(ツ)_/¯`, { source: dataSource });
+
+      return;
+    }
 
     setSelectedWords(selectedWords.concat(selectedWord));
   }
