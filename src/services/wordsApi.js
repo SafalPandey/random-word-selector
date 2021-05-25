@@ -6,12 +6,18 @@ import { RANDOM_WORD_API_URL } from '../constants';
  * @returns {Promise<{ word: string; meaning: string; }>}
  */
 export async function fetchRandomWord() {
-  const result = await fetch(RANDOM_WORD_API_URL);
+  try {
+    const result = await fetch(RANDOM_WORD_API_URL);
 
-  const [response] = await result.json();
+    const [response] = await result.json();
 
-  return {
-    word: response?.word,
-    meaning: response?.definition
-  };
+    return {
+      word: response?.word,
+      meaning: response?.definition
+    };
+  } catch (e) {
+    console.error(e);
+
+    return null;
+  }
 }
