@@ -11,8 +11,9 @@ function WordSelector() {
   const [contextWords] = useWordsState();
   const [settings] = useSettingsState();
   const [selectedWords, setSelectedWords] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { dataSource, apiKey, shouldShowMeaning } = settings;
+  const { dataSource, shouldShowMeaning } = settings;
 
   const words = contextWords || DEFAULT_WORDS;
 
@@ -29,10 +30,18 @@ function WordSelector() {
     ];
   }, [selectedWords]);
 
-  async function handleNewWordClick() {
+  const fetchWordFromApi = async () => {
+    setIsLoading(true);
+    const word = await fetchRandomWord();
+    setIsLoading(false);
+
+    return word;
+  };
+
+  const handleNewWordClick = async () => {
     const selectedWord =
       dataSource === DataSources.API
-        ? await fetchRandomWord(apiKey)
+        ? await fetchWordFromApi()
         : getRandomElement(words.filter((x) => !selectedWords.includes(x)));
 
     if (!selectedWord) {
@@ -42,13 +51,13 @@ function WordSelector() {
     }
 
     setSelectedWords(selectedWords.concat(selectedWord));
-  }
+  };
 
   return (
     <>
       <div id="words-div" style={{ width: '100%' }}>
         <div id="current-words-div" style={{ width: '100%' }} align="center">
-          <button onClick={handleNewWordClick} disabled={isListExhausted}>
+          <button onClick={handleNewWordClick} disabled={isListExhausted || isLoading}>
             New Word
           </button>
           {isListExhausted ? (
