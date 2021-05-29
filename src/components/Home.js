@@ -83,7 +83,7 @@ function parseCustomWords(customWords, shouldShowMeaning) {
 
     if (shouldShowMeaning && !meaning) {
       throw new Error(
-        `Every element in passed data must have a "meaning" property. Turn off "Display meaning of current word" setting to continue without "meaning" property.`
+        `Every element in passed data must have a "meaning" property.\n\nTurn off "Display meaning of current word" setting to continue without "meaning" property.`
       );
     }
   }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { PLACEHOLDER_TEXT } from '../data';
 import { DataSources, RANDOM_WORD_API_URL } from '../constants';
