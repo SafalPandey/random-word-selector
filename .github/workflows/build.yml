@@ -56,6 +56,15 @@ jobs:
           git config --global user.name "Safal Raj Pandey"
           git config --global user.email "safal.pandey.sp@gmail.com"
 
+          # Check if there is anything to commit
+          dist_diff=$(git diff --name-only dist)
+
+          if [ -z "$dist_diff" ]; then
+            echo "Nothing to commit."
+
+            exit 0
+          fi
+
           # Commit and push dist directory
           git add dist
           git commit -m "Update build
