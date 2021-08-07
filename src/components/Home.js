@@ -67,7 +67,15 @@ function parseCustomWords(customWords, shouldShowMeaning) {
   try {
     parsedCustomWords = JSON.parse(customWords);
   } catch (e) {
-    throw new Error('Passed data must be a valid JSON Array. Could not parse passed list.');
+    parsedCustomWords = customWords.split(',').reduce((acc, word) => {
+      const trimmedWord = word.trim();
+
+      if (trimmedWord) {
+        acc.push({ word: trimmedWord });
+      }
+
+      return acc;
+    }, []);
   }
 
   if (!Array.isArray(parsedCustomWords)) {
