@@ -8,7 +8,7 @@ function DataSource(props) {
 
   return (
     <>
-      <h2>Data source</h2>
+      <h2 className="text-2xl leading-5 my-4">Data source</h2>
       <div id="words-input-div" style={{ width: '100%', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         <div id="source-setting" style={{ width: '20%' }}>
           <input
@@ -18,7 +18,7 @@ function DataSource(props) {
             onClick={() => setDataSource(DataSources.STATIC)}
             defaultChecked={dataSource === DataSources.STATIC}
           />
-          <label htmlFor="input-source-static">
+          <label htmlFor="input-source-static" className="mx-2">
             <strong>Static list</strong>
           </label>
 
@@ -32,7 +32,7 @@ function DataSource(props) {
             onClick={() => setDataSource(DataSources.API)}
             defaultChecked={dataSource === DataSources.API}
           />
-          <label htmlFor="input-source-api">
+          <label htmlFor="input-source-api" className="mx-2">
             <strong>API source</strong>
           </label>
         </div>
@@ -43,6 +43,7 @@ function DataSource(props) {
               id="input-static-list"
               onChange={(evt) => setCustomWords(evt.target.value)}
               placeholder={PLACEHOLDER_TEXT}
+              className="rounded p-3 bg-gray-800 text-gray-50"
               style={{ height: '50vh', width: '80%' }}
               value={customWords}
             />
