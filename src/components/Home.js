@@ -44,13 +44,13 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="flex-wrap">
       <DataSource {...{ words, settings, dataSource, customWords, setDataSource, setCustomWords }} />
       <Settings settings={settings} setSettings={setSettings} />
-      <button style={{ height: '2em', fontSize: '1.25em' }} onClick={onSubmit}>
+      <button className="float-right py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700" onClick={onSubmit}>
         Submit
       </button>
-    </>
+    </div>
   );
 }
 

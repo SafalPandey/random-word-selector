@@ -5,8 +5,10 @@ function Header() {
   const history = useHistory();
 
   return (
-    <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>
-      Random Word Selector
+    <h1 className="text-3xl leading-10 py-3 my-2">
+      <span style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>
+        Random Word Selector
+      </span>
     </h1>
   );
 }
