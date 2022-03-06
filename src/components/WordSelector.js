@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from 'react';
+import { useRouteMatch } from 'react-router';
+import React, { useMemo, useState, useEffect } from 'react';
 
 import { DEFAULT_WORDS } from '../data';
 import { DataSources } from '../constants';
+import { parseCustomWords } from '../utils/words';
 import { useWordsState } from '../contexts/words';
 import { getRandomElement } from '../utils/common';
 import { fetchRandomWord } from '../services/wordsApi';
@@ -13,9 +15,19 @@ function WordSelector() {
   const [selectedWords, setSelectedWords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { dataSource, shouldShowMeaning } = settings;
+  const { dataSource } = settings;
 
-  const words = contextWords || DEFAULT_WORDS;
+  const [words, setWords] = useState(contextWords || DEFAULT_WORDS);
+  const [shouldShowMeaning, setShouldShowMeaning] = useState(settings.shouldShowMeaning);
+
+  const { params } = useRouteMatch();
+
+  useEffect(() => {
+    if (params?.names) {
+      setWords(parseCustomWords(params.names));
+      setShouldShowMeaning(false);
+    }
+  }, [params]);
 
   const [selectedList, lastSelectedWord, isListExhausted] = useMemo(() => {
     return [
@@ -59,7 +71,9 @@ function WordSelector() {
         <div id="current-words-div" style={{ width: '100%' }} align="center">
           <button
             className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            onClick={handleNewWordClick} disabled={isListExhausted || isLoading}>
+            onClick={handleNewWordClick}
+            disabled={isListExhausted || isLoading}
+          >
             New Word
           </button>
           {isListExhausted ? (

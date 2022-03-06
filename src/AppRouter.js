@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 
-import "tailwindcss/tailwind.css";
+import 'tailwindcss/tailwind.css';
 
 import { WordsProvider } from './contexts/words';
 import { SettingsProvider } from './contexts/settings';
@@ -21,6 +21,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/selector" component={WordSelector} />
+                <Route exact path="/selector/:names" component={WordSelector} />
               </Switch>
             </Suspense>
           </SettingsProvider>
